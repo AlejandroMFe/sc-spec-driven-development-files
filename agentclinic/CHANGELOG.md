@@ -2,6 +2,8 @@
 
 ## 2026-10-22
 
+- docs: combine roadmap phases 2-5 into phase 2
+- feat: add changelog skill and generate initial CHANGELOG.md
 - feat: add project specifications, initial Hono application structure, components, and tests
 - chore: add empty workspace settings configuration file
 - Complete Phase 1: Hello Hono scaffold with layout components, styling, and tests
