@@ -13,7 +13,7 @@ AgentClinic is architected as a lean, server-side TypeScript application. By ren
 | Styling | Modern CSS & Custom Properties | Clean, responsive design supporting modern browsers without complex CSS build steps (Steve's requirement). |
 | Data Layer | SQLite (`better-sqlite3`) | Embedded, file-backed database with zero infrastructure dependencies for swift local development and predictable state. |
 | Testing | Vitest | Fast, TypeScript-compatible testing framework for unit and integration checks. |
-| Tooling | `tsx` & `tsc` | Direct TypeScript execution via `tsx` during development; strict type checking with `tsc`. |
+| Tooling | `tsx` & `tsc` | Direct TypeScript execution via `tsx` during development; strict type checking with `tsc`; `prettier` for formatting |
 
 ## Data
 
@@ -36,3 +36,9 @@ Hono was selected over traditional frameworks (Express, Fastify) because:
 ### Data Management
 - Plain SQL schemas and migrations managed via straightforward SQL files.
 - Avoids heavyweight ORM abstractions to keep queries transparent and predictable.
+
+### What We Are Not Using
+
+- No React, Vue, or Svelte — server-side rendering keeps the stack simple
+- No ORM — SQL is sufficient at this scale
+- No Docker — not yet; that's a later phase concern
