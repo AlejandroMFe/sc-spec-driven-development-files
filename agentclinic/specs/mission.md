@@ -17,7 +17,7 @@ AgentClinic provides operational observability and intervention tools to safegua
 - **AI Agents**: Distressed, over-queried models in need of throttled workloads and scheduled cooldown periods.
 - **Engineering & Staff (Mary's Need)**: Engineers who require reliable observability, clear dashboards, and programmatic control over agent workloads.
 - **Product & Stakeholders (Susan's Need)**: Teams managing agents, defining cataloged ailments, prescribing therapies, and scheduling interventions.
-- **End Users & Web Browsers (Steve's Need)**: Developers accessing an attractive, responsive, and seamless interface in modern web browsers.
+- **End Users & Web Browsers (Steve's Need)**: Developers accessing an attractive, mobile-first responsive interface that renders cleanly across all screen sizes and modern web browsers.
 
 ## Target Audience
 

@@ -15,8 +15,9 @@ Establish the initial AgentClinic project scaffold using Hono, TypeScript, and N
   - Clinic overview paragraph introducing the service
   - Service links / previews pointing to `/health` and upcoming clinic registries
 - Development tooling with `tsx watch` for hot-reload.
-- Automated testing harness using Vitest covering both endpoints.
+- Automated testing harness using Vitest covering endpoints and components.
 - Strict TypeScript configuration (`tsconfig.json` with `"strict": true` and Hono JSX support).
+- Mobile-first responsive styling in `/static/style.css` using CSS custom properties, responsive container sizing, and viewport meta tag in the HTML layout shell.
 
 ### Out of Scope
 - Full shared layout, global navigation bar, and CSS styling library (scheduled for Phase 2).
@@ -44,8 +45,17 @@ Establish the initial AgentClinic project scaffold using Hono, TypeScript, and N
 ### 4. Strict TypeScript
 - `tsconfig.json` enforces `"strict": true` and appropriate JSX configuration (`"jsx": "react-jsx"`, `"jsxImportSource": "hono/jsx"`).
 
-### 5. Testing with Vitest
-- Vitest provides fast, TypeScript-native execution for unit and route-level integration tests.
+### 5. Testing & Validation with Vitest
+- Vitest provides fast, TypeScript-native execution for unit, component, and route-level integration tests.
+- Wired directly to `npm test` (`"test": "vitest run"`) in `package.json` for automated specification validation.
+- All tests must pass with exit code 0 as a required gate before branch completion.
+
+### 6. Mobile-First Responsive Design
+- Satisfies Steve's requirement for a modern, responsive web experience across desktop, tablet, and mobile browsers.
+- All CSS is authored mobile-first: base rules target small screens, and `min-width` media queries progressively enhance typography and spacing for wider viewports.
+- Spacing, colors, and layout widths are managed centrally with CSS custom properties.
+- The document layout includes `<meta name="viewport" content="width=device-width, initial-scale=1.0">`.
+- Responsive design is foundational from this initial phase onward and is never deferred.
 
 ---
 

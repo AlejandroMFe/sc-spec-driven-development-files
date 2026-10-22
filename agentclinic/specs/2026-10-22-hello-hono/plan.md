@@ -38,29 +38,32 @@
 
 ---
 
-## Group 4 — Automated Testing
+## Group 4 — Automated Testing & Validation
 
-11. Create test suite `tests/index.test.ts` importing the Hono app instance.
-12. Implement route test for `GET /health` asserting HTTP status 200, JSON content-type, and `status: "ok"`.
-13. Implement route test for `GET /` asserting HTTP status 200, HTML content-type, and presence of `AgentClinic` and clinic status in the response body.
+11. Configure `"test": "vitest run"` in `package.json` for automated test execution.
+12. Create test suite `tests/index.test.ts` importing the Hono app instance.
+13. Implement route test for `GET /health` asserting HTTP status 200, JSON content-type, and `status: "ok"`.
+14. Implement route test for `GET /` asserting HTTP status 200, HTML content-type, and presence of `AgentClinic` and clinic status in the response body.
+15. Implement route test for `GET /static/style.css` asserting HTTP status 200 and stylesheet content.
+16. Create component test suite `tests/components.test.tsx` verifying JSX rendering of `Header`, `Footer`, `Main`, `Layout`, and `Home`.
 
 ---
 
 ## Group 5 — Main Layout Component & Styling
 
-14. Create `src/components/Header.tsx`, `src/components/Main.tsx`, and `src/components/Footer.tsx` as dedicated subcomponents.
-15. Create `src/components/Layout.tsx` providing top-level document structure (`<html>`, `<head>`, `<body>`) wrapping `<Header>`, `<Main>`, and `<Footer>`, linking `/static/style.css`.
-16. Create `static/style.css` with clean base styling and CSS reset.
-17. Mount `@hono/node-server/serve-static` middleware in `src/index.tsx` to serve `/static/*`.
-18. Refactor `src/pages/Home.tsx` to render page content inside `<Layout>`.
+17. Create `src/components/Header.tsx`, `src/components/Main.tsx`, and `src/components/Footer.tsx` as dedicated subcomponents.
+18. Create `src/components/Layout.tsx` providing top-level document structure (`<html>`, `<head>`, `<body>`) with `<meta name="viewport" content="width=device-width, initial-scale=1.0">` for mobile responsiveness, wrapping `<Header>`, `<Main>`, and `<Footer>`, and linking `/static/style.css`.
+19. Create `static/style.css` with mobile-first base styling, CSS custom properties (`:root` tokens for spacing, colors, and layout max-width), compact mobile padding, and `min-width` media queries for responsive tablet/desktop enhancements.
+20. Mount `@hono/node-server/serve-static` middleware in `src/index.tsx` to serve `/static/*`.
+21. Refactor `src/pages/Home.tsx` to render page content inside `<Layout>`.
 
 ---
 
 ## Group 6 — Verification & Sanity Checks
 
-19. Run `npm run typecheck` to confirm zero TypeScript compilation errors.
-20. Run `npm run test` to confirm Vitest test suites execute and pass.
-21. Launch development server with `npm run dev` and perform manual `curl` requests to verify:
+22. Run `npm run typecheck` to confirm zero TypeScript compilation errors.
+23. Run `npm run test` to confirm Vitest test suites execute and pass.
+24. Launch development server with `npm run dev` and perform manual `curl` requests to verify:
     - `GET /` returns HTML rendered within `<Layout>` and links `/static/style.css`.
     - `GET /static/style.css` returns the stylesheet.
     - `GET /health` continues returning operational JSON status.

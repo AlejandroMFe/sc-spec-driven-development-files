@@ -1,3 +1,23 @@
+:root {
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --max-width: 60rem;
+  --color-text: #1a1a1a;
+  --color-muted: #4b5563;
+  --color-subtle: #666;
+  --color-border: #e5e5e5;
+  --color-badge-bg: #ecfdf5;
+  --color-badge-text: #065f46;
+  --color-badge-border: #a7f3d0;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.75rem;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -6,13 +26,14 @@ body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   line-height: 1.5;
-  color: #1a1a1a;
+  color: var(--color-text);
   background: #fff;
 }
 
+/* Mobile-first: compact padding on smaller viewports */
 header {
-  padding: 1rem 2rem;
-  border-bottom: 1px solid #e5e5e5;
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--color-border);
 }
 
 header a {
@@ -22,32 +43,57 @@ header a {
 }
 
 main {
-  padding: 2rem;
-  max-width: 60rem;
+  padding: var(--space-md);
+  width: 100%;
+  max-width: var(--max-width);
   margin-inline: auto;
 }
 
 footer {
-  padding: 1rem 2rem;
-  border-top: 1px solid #e5e5e5;
-  font-size: 0.875rem;
-  color: #666;
+  padding: var(--space-sm) var(--space-md);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--font-size-sm);
+  color: var(--color-subtle);
+}
+
+.hero h1 {
+  font-size: var(--font-size-xl);
+  margin-top: 0;
+  margin-bottom: var(--space-xs);
 }
 
 .tagline {
-  color: #4b5563;
-  font-size: 1.125rem;
-  margin-top: 0.5rem;
+  color: var(--color-muted);
+  font-size: var(--font-size-lg);
+  margin-top: var(--space-xs);
+  margin-bottom: var(--space-sm);
 }
 
 .status-badge {
   display: inline-block;
-  background: #ecfdf5;
-  color: #065f46;
-  border: 1px solid #a7f3d0;
+  background: var(--color-badge-bg);
+  color: var(--color-badge-text);
+  border: 1px solid var(--color-badge-border);
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
   font-weight: 500;
-  margin-top: 0.5rem;
+  margin-top: var(--space-xs);
+  max-width: 100%;
+  word-break: break-word;
+}
+
+/* Progressive enhancement for tablet and desktop viewports */
+@media (min-width: 640px) {
+  header {
+    padding: var(--space-md) var(--space-xl);
+  }
+
+  main {
+    padding: var(--space-lg) var(--space-xl);
+  }
+
+  footer {
+    padding: var(--space-md) var(--space-xl);
+  }
 }

@@ -25,6 +25,8 @@ describe("GET /", () => {
 
     const html = await res.text();
     // Layout and subcomponents
+    expect(html).toContain('name="viewport"');
+    expect(html).toContain("width=device-width");
     expect(html).toContain('href="/static/style.css"');
     expect(html).toContain("<header>");
     expect(html).toContain("<main>");
@@ -39,12 +41,15 @@ describe("GET /", () => {
 });
 
 describe("GET /static/style.css", () => {
-  it("returns HTTP 200 with stylesheet content", async () => {
+  it("returns HTTP 200 with stylesheet content supporting responsive design", async () => {
     const res = await app.request("/static/style.css");
     expect(res.status).toBe(200);
     const css = await res.text();
     expect(css).toContain("box-sizing");
+    expect(css).toContain(":root");
+    expect(css).toContain("--space-");
     expect(css).toContain("header");
     expect(css).toContain("footer");
+    expect(css).toContain("@media (min-width:");
   });
 });

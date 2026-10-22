@@ -1,6 +1,6 @@
 # Roadmap
 
-Phases are deliberately structured into very small, incremental vertical slices (1–3 features per phase, completion time of a day or less). Each phase delivers a functional, independently testable milestone that can be reviewed and validated quickly.
+Phases are deliberately structured into very small, incremental vertical slices (1–3 features per phase, completion time of a day or less). Each phase delivers a functional, independently testable milestone with automated Vitest validation that can be reviewed and validated quickly.
 
 ---
 
@@ -8,6 +8,8 @@ Phases are deliberately structured into very small, incremental vertical slices 
 - Initialize Hono server with `tsx` development runner.
 - Implement root endpoint (`/`) returning health status and system greeting.
 - Verify TypeScript compilation and runtime execution.
+- Automated testing and specification validation suite using Vitest (`npm test`).
+- Mobile-first responsive design foundation with CSS custom properties and viewport meta configuration.
 
 ## Phase 2 — Base Layout & Global Design
 - Create shared server-side JSX layout component (Header, Navigation, Main container, Footer).
@@ -45,7 +47,7 @@ Phases are deliberately structured into very small, incremental vertical slices 
 - Add quick-action controls for staff to view and manage active bookings.
 
 ## Phase 9 — Responsive UI & Browser Compatibility
-- Implement responsive CSS grid and layout adjustments for mobile and desktop screens.
+- Comprehensive responsive layout audit across all pages and components (ensuring every page adheres to the mobile-first baseline established in Phase 1).
 - Audit semantic HTML, keyboard focus states, and color contrast.
 - Validate cross-browser rendering for modern web standards.
 

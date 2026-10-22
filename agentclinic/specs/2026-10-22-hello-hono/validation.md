@@ -15,14 +15,22 @@ npm run typecheck
 - Must complete with exit code 0 and emit zero errors or warnings.
 - `tsconfig.json` must enforce `"strict": true`.
 
-### Automated Tests
+### Automated Tests (Vitest)
 ```bash
-npm run test
+npm test
 ```
-- Vitest must execute successfully.
-- Tests must pass for both `GET /health` and `GET /`:
-  - `GET /health` asserts status 200, JSON header, and valid `{ status: "ok", service: "AgentClinic" }` payload.
-  - `GET /` asserts status 200, `text/html` header, and presence of `AgentClinic`, tagline, and operational status badge.
+- Must execute Vitest test runner (`vitest run` wired in `package.json`) and exit with code 0.
+- All test suites must pass without errors:
+  - Route tests (`tests/index.test.ts`):
+    - `GET /health` asserts status 200, JSON header, and valid `{ status: "ok", service: "AgentClinic" }` payload.
+    - `GET /` asserts status 200, `text/html` header, and presence of `AgentClinic`, tagline, layout elements (`<header>`, `<main>`, `<footer>`), and operational status badge.
+    - `GET /static/style.css` asserts status 200 and stylesheet content.
+  - Component tests (`tests/components.test.tsx`):
+    - `Header` renders `<header>`, link to `/`, and brand name.
+    - `Footer` renders `<footer>`, current year, and brand name.
+    - `Main` renders `<main>` container and children content.
+    - `Layout` renders HTML shell, `<title>`, stylesheet link, viewport meta tag, header, children, and footer.
+    - `Home` renders hero section, mission tagline, operational status badge, overview section, and links.
 
 ---
 
@@ -60,6 +68,13 @@ curl -i http://localhost:3000/health
 
 ---
 
-## 3. Architecture & Tone Validation
+## 3. Responsive Design Validation
+- **Viewport Meta Tag**: Home page response must include `<meta name="viewport" content="width=device-width, initial-scale=1.0">`.
+- **CSS Custom Properties**: `/static/style.css` must define `:root` tokens for spacing, sizing, and color variables.
+- **Mobile-First Media Queries**: `/static/style.css` must implement base mobile styles and include at least one `min-width` media query (e.g. `@media (min-width: 640px)`) to progressively enhance layout across viewports.
+
+---
+
+## 4. Architecture & Tone Validation
 - Verify the home page is implemented in a dedicated component file (`src/pages/Home.tsx`) rather than an inline string in `src/index.tsx`.
 - Verify copy has a playful, demo-ready tone appropriate for an AI agent wellness and relief clinic without unnecessary enterprise ceremony.

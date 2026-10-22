@@ -37,6 +37,17 @@ Hono was selected over traditional frameworks (Express, Fastify) because:
 - Plain SQL schemas and migrations managed via straightforward SQL files.
 - Avoids heavyweight ORM abstractions to keep queries transparent and predictable.
 
+### Testing & Validation
+- **Vitest** is selected as our test runner and validation framework for unit, component, and integration checks.
+- Validates route handling, server-side JSX component rendering, and application logic against specification requirements.
+- Executed via `npm test` (using the `vitest run` script in `package.json`) for automated validation runs.
+
+### CSS & Responsive Design Approach
+- All CSS is written mobile-first: base styles target small screens, and `min-width` media queries progressively enhance layouts for larger viewports.
+- CSS custom properties hold spacing, sizing, color, and typography tokens for consistent design across breakpoints.
+- The `<meta name="viewport" content="width=device-width, initial-scale=1.0">` viewport tag is required in the base HTML shell.
+- No heavy CSS frameworks or build steps are used—the browser receives plain, clean CSS. Responsive design is foundational and required across all phases (Steve's requirement).
+
 ### What We Are Not Using
 
 - No React, Vue, or Svelte — server-side rendering keeps the stack simple
