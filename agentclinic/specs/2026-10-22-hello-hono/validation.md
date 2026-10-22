@@ -2,7 +2,7 @@
 
 ## Definition of Done
 
-All checklist criteria below must pass before merging the branch into `main`.
+All checklist criteria below must pass before merging this branch into `main`.
 
 ---
 
@@ -20,7 +20,9 @@ npm run typecheck
 npm run test
 ```
 - Vitest must execute successfully.
-- Tests must pass for both `GET /health` and `GET /`.
+- Tests must pass for both `GET /health` and `GET /`:
+  - `GET /health` asserts status 200, JSON header, and valid `{ status: "ok", service: "AgentClinic" }` payload.
+  - `GET /` asserts status 200, `text/html` header, and presence of `AgentClinic`, tagline, and operational status badge.
 
 ---
 
@@ -31,30 +33,33 @@ Start the local server:
 npm run dev
 ```
 
-### Root Greeting Endpoint (`GET /`)
+### Minimal Home Page Endpoint (`GET /`)
 ```bash
 curl -i http://localhost:3000/
 ```
 - **HTTP Status**: `200 OK`
-- **Content-Type**: `text/html`
+- **Content-Type**: `text/html; charset=UTF-8`
 - **Body Contains**:
-  - `AgentClinic`
-  - Tagline reflecting agent relief care
-  - Operational status badge
+  - `<h1>AgentClinic</h1>`
+  - Mission tagline (*"Specialized relief, cooldowns, and triage for exhausted AI agents"*)
+  - Clinic reception status badge (*"Status: Operational — Accepting Distressed Agents"*)
+  - Clinic overview paragraph introducing the service
+  - Service navigation links/pointers (including `/health`)
 
 ### Health Endpoint (`GET /health`)
 ```bash
 curl -i http://localhost:3000/health
 ```
 - **HTTP Status**: `200 OK`
-- **Content-Type**: `application/json`
+- **Content-Type**: `application/json; charset=UTF-8`
 - **Body Matches**:
   - `status`: `"ok"`
   - `service`: `"AgentClinic"`
-  - `timestamp`: Valid ISO timestamp
-  - `uptime`: Positive number
+  - `timestamp`: Valid ISO timestamp string
+  - `uptime`: Positive numeric value
 
 ---
 
-## 3. Tone & Style Validation
-- Verify copy has a playful, demo-ready tone appropriate for an AI agent wellness and relief clinic without unnecessary enterprise boilerplate.
+## 3. Architecture & Tone Validation
+- Verify the home page is implemented in a dedicated component file (`src/pages/Home.tsx`) rather than an inline string in `src/index.tsx`.
+- Verify copy has a playful, demo-ready tone appropriate for an AI agent wellness and relief clinic without unnecessary enterprise ceremony.
