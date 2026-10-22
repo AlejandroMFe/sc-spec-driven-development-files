@@ -11,7 +11,7 @@ Look in README.md for input from stakeholders. Make a constitution in a specs di
 
 Interview me about mission, target audience, tech stack gaps.
 
-Important: You *must* use your AskUserQuestion tool, grouped on these 3, before writing to disk.
+Important: You *must* use your grill-me tool, grouped on these 3, before writing to disk.
 
 ## Prompt 2
 

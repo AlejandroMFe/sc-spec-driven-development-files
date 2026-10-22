@@ -11,7 +11,7 @@ Let's create a "constitution" in a specs directory:
 - `tech-stack.md`
 - `roadmap.md` for high-level implementation order, in very small phases of work.
 
-Important: You *must* use your AskUserQuestion tool, grouped on these 3, before writing to disk.
+Important: You *must* use your grill-me tool, grouped on these 3, before writing to disk.
 
 ## Prompt 3
 

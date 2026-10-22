@@ -19,7 +19,7 @@ git checkout -b phase-N-<kebab-name>
 
 ### 3. Interview the user — BEFORE writing any files
 
-Use `AskUserQuestion` with exactly **3 questions in one call**:
+Use `grill-me` with exactly **3 questions in one call**:
 
 | Header | Question focus |
 |--------|---------------|
