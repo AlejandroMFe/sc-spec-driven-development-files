@@ -46,8 +46,21 @@
 
 ---
 
-## Group 5 — Verification & Sanity Checks
+## Group 5 — Main Layout Component & Styling
 
-14. Run `npm run typecheck` to confirm zero TypeScript compilation errors.
-15. Run `npm run test` to confirm Vitest test suites execute and pass.
-16. Launch development server with `npm run dev` and perform manual `curl` requests to verify local HTTP responses for both `/` and `/health`.
+14. Create `src/components/Header.tsx`, `src/components/Main.tsx`, and `src/components/Footer.tsx` as dedicated subcomponents.
+15. Create `src/components/Layout.tsx` providing top-level document structure (`<html>`, `<head>`, `<body>`) wrapping `<Header>`, `<Main>`, and `<Footer>`, linking `/static/style.css`.
+16. Create `static/style.css` with clean base styling and CSS reset.
+17. Mount `@hono/node-server/serve-static` middleware in `src/index.tsx` to serve `/static/*`.
+18. Refactor `src/pages/Home.tsx` to render page content inside `<Layout>`.
+
+---
+
+## Group 6 — Verification & Sanity Checks
+
+19. Run `npm run typecheck` to confirm zero TypeScript compilation errors.
+20. Run `npm run test` to confirm Vitest test suites execute and pass.
+21. Launch development server with `npm run dev` and perform manual `curl` requests to verify:
+    - `GET /` returns HTML rendered within `<Layout>` and links `/static/style.css`.
+    - `GET /static/style.css` returns the stylesheet.
+    - `GET /health` continues returning operational JSON status.

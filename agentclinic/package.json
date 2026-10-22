@@ -1,0 +1,24 @@
+{
+  "name": "agentclinic",
+  "version": "1.0.0",
+  "description": "AgentClinic - Specialized relief, cooldowns, and triage for exhausted AI agents",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.tsx",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.12",
+    "hono": "^4.12.9"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.5.3",
+    "vitest": "^2.1.8"
+  },
+  "private": true
+}
