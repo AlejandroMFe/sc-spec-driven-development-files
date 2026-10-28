@@ -45,6 +45,7 @@ Hono was selected over traditional frameworks (Express, Fastify) because:
 ### CSS & Responsive Design Approach
 - All CSS is written mobile-first: base styles target small screens, and `min-width` media queries progressively enhance layouts for larger viewports.
 - CSS custom properties hold spacing, sizing, color, and typography tokens for consistent design across breakpoints.
+- Brand colors are specified as **orange** and **black**, defined as CSS variables (`--color-brand-orange` and `--color-brand-black` / `--pico-primary`) to theme interactive elements and headers.
 - The `<meta name="viewport" content="width=device-width, initial-scale=1.0">` viewport tag is required in the base HTML shell.
 - No heavy CSS frameworks or build steps are used—the browser receives plain, clean CSS. Responsive design is foundational and required across all phases (Steve's requirement).
 

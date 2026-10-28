@@ -39,7 +39,7 @@ Tracking progress for the **Spec-Driven Development with Agentic Coding Assistan
 
 | Step / Prompt | Description | Status |
 |:---|:---|:---:|
-| **Prompt 1** | *"Our brand colors are orange and black."* | ⏳ Pending |
+| **Prompt 1** | *"Our brand colors are orange and black."* | ✅ Completed |
 | **Prompt 2** | *"Use extracted props definitions with a TypeScript type instead of inline and re-run tests."* | ✅ Completed |
 | **Prompt 3** | *"Do a deep review: Spawn multiple subagents to go through all the changes on this branch from three different perspectives and see if anything doesn't make sense, could be better, etc."* | ⏳ Up Next |
 | **Prompt 4** | *"Use your changelog skill to update the changelog with work done on this branch."* | ⏳ Pending |
@@ -64,3 +64,4 @@ Tracking progress for the **Spec-Driven Development with Agentic Coding Assistan
     - Group 4: Implemented `/agents`, `/agents/:id`, `/ailments` routes and JSX components
     - Verified all 24 Vitest tests passing & clean TypeScript compilation
   - Completed Lesson 09 Prompt 2: Extracted TypeScript props types (`LayoutProps`, `MainProps`, `HeaderProps`, `FooterProps`) across components in `agentclinic/src/components` and re-ran tests.
+  - Completed Lesson 09 Prompt 1: Configured orange and black brand palette in `tech-stack.md`, `requirements.md`, and CSS variables in `static/style.css`.

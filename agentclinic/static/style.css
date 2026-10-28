@@ -1,17 +1,29 @@
 :root {
+  /* Brand Tokens: Orange and Black */
+  --color-brand-orange: #f97316;
+  --color-brand-orange-hover: #ea580c;
+  --color-brand-black: #111827;
+
+  /* PicoCSS primary color overrides */
+  --pico-primary: var(--color-brand-orange);
+  --pico-primary-background: var(--color-brand-orange);
+  --pico-primary-underline: rgba(249, 115, 22, 0.5);
+  --pico-primary-hover: var(--color-brand-orange-hover);
+  --pico-primary-hover-background: var(--color-brand-orange-hover);
+
   --space-xs: 0.5rem;
   --space-sm: 0.75rem;
   --space-md: 1rem;
   --space-lg: 1.5rem;
   --space-xl: 2rem;
   --max-width: 60rem;
-  --color-text: #1a1a1a;
+  --color-text: var(--color-brand-black);
   --color-muted: #4b5563;
   --color-subtle: #666;
   --color-border: #e5e5e5;
-  --color-badge-bg: #ecfdf5;
-  --color-badge-text: #065f46;
-  --color-badge-border: #a7f3d0;
+  --color-badge-bg: #fff7ed;
+  --color-badge-text: #9a3412;
+  --color-badge-border: #fed7aa;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
   --font-size-lg: 1.125rem;
@@ -40,6 +52,11 @@ header a {
   font-weight: 600;
   text-decoration: none;
   color: inherit;
+}
+
+header nav > a:first-child {
+  font-weight: 700;
+  color: var(--color-brand-orange);
 }
 
 main {

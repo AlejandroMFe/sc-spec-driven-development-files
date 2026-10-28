@@ -9,6 +9,7 @@ Phase 2 delivers the first real content of AgentClinic: a shared layout system, 
 ### Layout & Styling
 - A server-side JSX layout component wraps every route: header, nav, main container, footer.
 - CSS uses **PicoCSS** (classless variant) for base styling — loaded via CDN or npm package, with no build step required.
+- Brand colors are **orange** and **black**, configured through CSS custom properties and Pico theme variables.
 - A minimal `styles.css` supplements Pico with project-specific overrides and CSS custom properties (including brand tokens).
 - Mobile-first responsive layout is provided by Pico out of the box and verified down to 375px.
 
