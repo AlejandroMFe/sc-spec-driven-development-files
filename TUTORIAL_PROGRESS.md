@@ -51,4 +51,9 @@ Tracking progress for the **Spec-Driven Development with Agentic Coding Assistan
 - **2026-10-28**:
   - Confirmed completion of Lesson 08.
   - Initialized `TUTORIAL_PROGRESS.md` with active working directory set to `agentclinic/`.
-  - Ready to begin Lesson 09, Prompt 1.
+  - Created Git branch `agents-ailments` for Phase 2: Agents & Ailments.
+  - Ran requirements alignment questions covering `requirements.md`, `plan.md`, and `validation.md`.
+  - Created Phase 2 specification directory and files:
+    - `agentclinic/specs/2026-10-28-agents-ailments/requirements.md`
+    - `agentclinic/specs/2026-10-28-agents-ailments/plan.md`
+    - `agentclinic/specs/2026-10-28-agents-ailments/validation.md`
