@@ -1,7 +1,13 @@
 # Changelog
 
+## 2026-10-28
+
+- feat: add Phase 2 feature specification for agents-ailments
+- docs: add tutorial progress tracker for spec-driven development course
+
 ## 2026-10-22
 
+- docs: update changelog with roadmap replanning
 - docs: combine roadmap phases 2-5 into phase 2
 - feat: add changelog skill and generate initial CHANGELOG.md
 - feat: add project specifications, initial Hono application structure, components, and tests
