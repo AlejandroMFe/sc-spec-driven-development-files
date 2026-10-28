@@ -1,24 +1,14 @@
-import { Hono } from "hono";
 import { serve } from "@hono/node-server";
-import { serveStatic } from "@hono/node-server/serve-static";
-import { Home } from "./pages/Home";
+import { createDb } from "./db/index";
+import { migrate } from "./db/migrate";
+import { seed } from "./db/seed";
+import { createApp } from "./app";
 
-export const app = new Hono();
+export const db = createDb();
+migrate(db);
+seed(db);
 
-app.use("/static/*", serveStatic({ root: "./" }));
-
-app.get("/health", (c) => {
-  return c.json({
-    status: "ok",
-    service: "AgentClinic",
-    uptime: process.uptime(),
-    timestamp: new Date().toISOString(),
-  });
-});
-
-app.get("/", (c) => {
-  return c.html(<Home />);
-});
+export const app = createApp(db);
 
 if (process.env.NODE_ENV !== "test") {
   const port = Number(process.env.PORT) || 3000;
