@@ -39,9 +39,9 @@ Tracking progress for the **Spec-Driven Development with Agentic Coding Assistan
 
 | Step / Prompt | Description | Status |
 |:---|:---|:---:|
-| **Prompt 1** | *"Our brand colors are orange and black."* | ⏳ Up Next |
-| **Prompt 2** | *"Use extracted props definitions with a TypeScript type instead of inline and re-run tests."* | ⏳ Pending |
-| **Prompt 3** | *"Do a deep review: Spawn multiple subagents to go through all the changes on this branch from three different perspectives and see if anything doesn't make sense, could be better, etc."* | ⏳ Pending |
+| **Prompt 1** | *"Our brand colors are orange and black."* | ⏳ Pending |
+| **Prompt 2** | *"Use extracted props definitions with a TypeScript type instead of inline and re-run tests."* | ✅ Completed |
+| **Prompt 3** | *"Do a deep review: Spawn multiple subagents to go through all the changes on this branch from three different perspectives and see if anything doesn't make sense, could be better, etc."* | ⏳ Up Next |
 | **Prompt 4** | *"Use your changelog skill to update the changelog with work done on this branch."* | ⏳ Pending |
 
 ---
@@ -57,3 +57,10 @@ Tracking progress for the **Spec-Driven Development with Agentic Coding Assistan
     - `agentclinic/specs/2026-10-28-agents-ailments/requirements.md`
     - `agentclinic/specs/2026-10-28-agents-ailments/plan.md`
     - `agentclinic/specs/2026-10-28-agents-ailments/validation.md`
+  - Implemented Phase 2: Agents & Ailments:
+    - Group 1: Integrated PicoCSS, updated Layout & Header navigation
+    - Group 2: Installed `better-sqlite3`, implemented migration runner and SQL migrations
+    - Group 3: Created seed data and `npm run seed` script
+    - Group 4: Implemented `/agents`, `/agents/:id`, `/ailments` routes and JSX components
+    - Verified all 24 Vitest tests passing & clean TypeScript compilation
+  - Completed Lesson 09 Prompt 2: Extracted TypeScript props types (`LayoutProps`, `MainProps`, `HeaderProps`, `FooterProps`) across components in `agentclinic/src/components` and re-ran tests.
