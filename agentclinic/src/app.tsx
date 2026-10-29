@@ -1,9 +1,9 @@
 import { Hono } from "hono";
 import { serveStatic } from "@hono/node-server/serve-static";
 import type Database from "better-sqlite3";
-import { Home } from "./pages/Home";
-import { agentsRouter } from "./routes/agents";
-import { ailmentsRouter } from "./routes/ailments";
+import { Home } from "./pages/Home.js";
+import { agentsRouter } from "./routes/agents.js";
+import { ailmentsRouter } from "./routes/ailments.js";
 
 export function createApp(db: Database.Database) {
   const app = new Hono();

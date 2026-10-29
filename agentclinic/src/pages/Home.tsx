@@ -1,8 +1,8 @@
-import { Layout } from "../components/Layout";
+import { Layout } from "../components/Layout.js";
 
 export function Home() {
   return (
-    <Layout>
+    <Layout title="AgentClinic">
       <section className="hero">
         <h1>AgentClinic</h1>
         <p className="tagline">Specialized relief, cooldowns, and triage for exhausted AI agents</p>

@@ -1,8 +1,8 @@
 import { Hono } from "hono";
 import type Database from "better-sqlite3";
-import { AgentsList } from "../components/AgentsList";
-import { AgentDetail } from "../components/AgentDetail";
-import type { Agent, Ailment } from "../db/types";
+import { AgentsList } from "../components/AgentsList.js";
+import { AgentDetail } from "../components/AgentDetail.js";
+import type { Agent, Ailment } from "../db/types.js";
 
 export function agentsRouter(db: Database.Database) {
   const router = new Hono();

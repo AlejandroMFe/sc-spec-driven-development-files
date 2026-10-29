@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { app } from "../src/index";
+import { app } from "../src/index.js";
 
 describe("GET /health", () => {
   it("returns HTTP 200 with JSON payload matching schema", async () => {
@@ -25,6 +25,7 @@ describe("GET /", () => {
 
     const html = await res.text();
     // Layout and subcomponents
+    expect(html).toContain("<!DOCTYPE html>");
     expect(html).toContain('name="viewport"');
     expect(html).toContain("width=device-width");
     expect(html).toContain('href="/static/style.css"');

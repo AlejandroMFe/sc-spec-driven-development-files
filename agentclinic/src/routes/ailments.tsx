@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import type Database from "better-sqlite3";
-import { AilmentsList } from "../components/AilmentsList";
-import type { Ailment } from "../db/types";
+import { AilmentsList } from "../components/AilmentsList.js";
+import type { Ailment } from "../db/types.js";
 
 export function ailmentsRouter(db: Database.Database) {
   const router = new Hono();

@@ -1,6 +1,6 @@
-import { createDb } from "./index";
-import { migrate } from "./migrate";
-import { seed } from "./seed";
+import { createDb } from "./index.js";
+import { migrate } from "./migrate.js";
+import { seed } from "./seed.js";
 
 const db = createDb();
 migrate(db);

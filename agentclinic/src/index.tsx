@@ -1,10 +1,11 @@
 import { serve } from "@hono/node-server";
-import { createDb } from "./db/index";
-import { migrate } from "./db/migrate";
-import { seed } from "./db/seed";
-import { createApp } from "./app";
+import { createDb } from "./db/index.js";
+import { migrate } from "./db/migrate.js";
+import { seed } from "./db/seed.js";
+import { createApp } from "./app.js";
 
-export const db = createDb();
+const dbPath = process.env.NODE_ENV === "test" ? ":memory:" : "agentclinic.db";
+export const db = createDb(dbPath);
 migrate(db);
 seed(db);
 

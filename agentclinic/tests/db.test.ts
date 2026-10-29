@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { createDb } from "../src/db/index";
-import { migrate } from "../src/db/migrate";
-import { seed } from "../src/db/seed";
+import { createDb } from "../src/db/index.js";
+import { migrate } from "../src/db/migrate.js";
+import { seed } from "../src/db/seed.js";
 
 function freshDb() {
   const db = createDb(":memory:");
@@ -39,7 +39,7 @@ describe("migrate", () => {
     expect(row).toBeDefined();
   });
 
-  it("creates the agent_ailments join table", () => {
+  it("creates the agent_ailments join table with cascade and reverse index", () => {
     const db = freshDb();
     const row = db
       .prepare(
@@ -47,6 +47,13 @@ describe("migrate", () => {
       )
       .get();
     expect(row).toBeDefined();
+
+    const idx = db
+      .prepare(
+        "SELECT name FROM sqlite_master WHERE type='index' AND name='idx_agent_ailments_ailment_id'"
+      )
+      .get();
+    expect(idx).toBeDefined();
   });
 });
 
@@ -93,5 +100,17 @@ describe("seed", () => {
       }
     ).count;
     expect(second).toBe(first);
+  });
+
+  it("cascades deletion of an agent to agent_ailments", () => {
+    const db = freshDb();
+    seed(db);
+    // Find an agent that has linked ailments
+    const link = db.prepare("SELECT agent_id FROM agent_ailments LIMIT 1").get() as { agent_id: number };
+    expect(link).toBeDefined();
+
+    db.prepare("DELETE FROM agents WHERE id = ?").run(link.agent_id);
+    const remaining = db.prepare("SELECT COUNT(*) as count FROM agent_ailments WHERE agent_id = ?").get(link.agent_id) as { count: number };
+    expect(remaining.count).toBe(0);
   });
 });
