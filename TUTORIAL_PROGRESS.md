@@ -33,22 +33,29 @@ Tracking progress for the **Spec-Driven Development with Agentic Coding Assistan
 
 ---
 
-## 🎯 Current Lesson Details: Lesson 09 — The Second Feature Phase
+## 🎯 Current Lesson Details: Lesson 10 — The MVP (Video 11)
 
 **Target Directory**: `agentclinic/`
+**Active Branch**: `mvp`
 
 | Step / Prompt | Description | Status |
 |:---|:---|:---:|
-| **Prompt 1** | *"Our brand colors are orange and black."* | ✅ Completed |
-| **Prompt 2** | *"Use extracted props definitions with a TypeScript type instead of inline and re-run tests."* | ✅ Completed |
-| **Prompt 3** | *"Do a deep review: Spawn multiple subagents to go through all the changes on this branch from three different perspectives and see if anything doesn't make sense, could be better, etc."* | ✅ Completed |
-| **Prompt 4** | *"Use your changelog skill to update the changelog with work done on this branch."* | ✅ Completed |
+| **Prompt 1** | *"Go through all the features on specs/roadmap.md, make a mvp branch, and ask me about the feature specs needed to complete an MVP. Create: new directory under specs with plan.md, requirements.md, validation.md."* | ✅ Completed |
+| **Prompt 2** | *"Implement this plan."* | ⏳ Pending |
+| **Prompt 3** | *"Based on the MVP, did you find anything that needs clarification in the specs?"* | ⏳ Pending |
 
 ---
 
 ## 📝 Change History / Notes
 
 - **2026-10-29**:
+  - Initialized Lesson 10 (The MVP).
+  - Created and checked out Git branch `mvp`.
+  - Conducted 3-part alignment interview with the user via `ask_question` regarding `requirements.md`, `plan.md`, and `validation.md`.
+  - Created MVP feature specification directory `agentclinic/specs/2026-10-29-mvp/`:
+    - `requirements.md`: Scope (Phases 3–7), technical decisions, constraints, and stakeholder needs.
+    - `plan.md`: 10 discrete implementation task groups spanning schema migrations, routes, JSX views, a11y, and middleware.
+    - `validation.md`: 3-tier verification gate (TypeScript check, Vitest automated tests, manual browser smoke checklist).
   - Implemented all 10 remediations from `deep-review-agents-ailments.md` across tooling, accessibility, layout, SQLite cascades/transactions, types, and expanded tests to 32/32 passing.
   - Committed remediations in commit `afe379a`.
   - Completed Lesson 09 Prompt 4: Executed changelog skill (`python changelog/scripts/changelog.py`) to update `agentclinic/CHANGELOG.md` with 7 new entries.
