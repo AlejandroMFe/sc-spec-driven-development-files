@@ -108,6 +108,11 @@ footer {
   word-break: break-word;
 }
 
+:focus-visible {
+  outline: 2px solid var(--color-brand-orange);
+  outline-offset: 2px;
+}
+
 /* Progressive enhancement for tablet and desktop viewports */
 @media (min-width: 640px) {
   header {

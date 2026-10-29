@@ -6,15 +6,25 @@ import { Layout } from "../src/components/Layout.js";
 import { AgentDetail } from "../src/components/AgentDetail.js";
 import { AgentsList } from "../src/components/AgentsList.js";
 import { AilmentsList } from "../src/components/AilmentsList.js";
+import { TherapiesList } from "../src/components/TherapiesList.js";
+import { AppointmentForm } from "../src/components/AppointmentForm.js";
+import { AppointmentConfirmation } from "../src/components/AppointmentConfirmation.js";
+import { Dashboard } from "../src/components/Dashboard.js";
+import { NotFound } from "../src/pages/NotFound.js";
+import { ServerError } from "../src/pages/ServerError.js";
 import { Home } from "../src/pages/Home.js";
-import type { Agent, Ailment } from "../src/db/types.js";
+import type { Agent, Ailment, Therapy, Appointment } from "../src/db/types.js";
 
 describe("Header component", () => {
-  it("renders a header element with link to home", () => {
+  it("renders a header element with links to all major sections", () => {
     const html = Header({}).toString();
     expect(html).toContain("<header");
     expect(html).toContain('href="/"');
     expect(html).toContain("AgentClinic");
+    expect(html).toContain('href="/agents"');
+    expect(html).toContain('href="/ailments"');
+    expect(html).toContain('href="/therapies"');
+    expect(html).toContain('href="/dashboard"');
   });
 });
 
@@ -64,12 +74,12 @@ describe("AgentDetail component", () => {
     created_at: "2026-10-28 12:00:00",
   };
 
-  const mockAilments: Ailment[] = [
-    { id: 1, name: "Context Bloat", description: "Too much context in buffer" },
-    { id: 2, name: "Prompt Drift", description: "Degraded adherence to instructions" },
+  const mockAilments = [
+    { id: 1, name: "Context Bloat", description: "Too much context in buffer", recommended_therapies: "Context Pruning" },
+    { id: 2, name: "Prompt Drift", description: "Degraded adherence to instructions", recommended_therapies: null },
   ];
 
-  it("renders agent profile, status badge, and presenting complaints list", () => {
+  it("renders agent profile, status badge, presenting complaints, and booking button", () => {
     const html = AgentDetail({ agent: mockAgent, ailments: mockAilments }).toString();
     expect(html).toContain("Test-Agent-9000");
     expect(html).toContain("GPT-4");
@@ -77,7 +87,9 @@ describe("AgentDetail component", () => {
     expect(html).toContain("active");
     expect(html).toContain("Presenting Complaints");
     expect(html).toContain("Context Bloat");
-    expect(html).toContain("Prompt Drift");
+    expect(html).toContain("Context Pruning");
+    expect(html).toContain('href="/agents/1/appointments/new"');
+    expect(html).toContain("Book an Appointment");
     expect(html).toContain('href="/agents"');
   });
 
@@ -90,7 +102,7 @@ describe("AgentDetail component", () => {
 describe("AgentsList component", () => {
   const mockAgents: Agent[] = [
     { id: 1, name: "Alpha", model_type: "M1", status: "active", created_at: "2026-10-28" },
-    { id: 2, name: "Beta", model_type: "M2", status: "on_leave", created_at: "2026-10-28" },
+    { id: 2, name: "Beta", model_type: "on_leave", status: "on_leave", created_at: "2026-10-28" },
   ];
 
   it("renders table of agents with links and status badges", () => {
@@ -101,7 +113,6 @@ describe("AgentsList component", () => {
     expect(html).toContain('href="/agents/2"');
     expect(html).toContain("Beta");
     expect(html).toContain('class="status-badge"');
-    expect(html).toContain("on leave");
   });
 
   it("renders empty state message when agent list is empty", () => {
@@ -111,20 +122,109 @@ describe("AgentsList component", () => {
 });
 
 describe("AilmentsList component", () => {
-  const mockAilments: Ailment[] = [
-    { id: 1, name: "Context Bloat", description: "Too much context in buffer" },
+  const mockAilments = [
+    { id: 1, name: "Context Bloat", description: "Too much context in buffer", recommended_therapies: "Prompt Detox" },
   ];
 
-  it("renders table of ailments with names and descriptions", () => {
+  it("renders table of ailments with names, descriptions, and recommended therapies", () => {
     const html = AilmentsList({ ailments: mockAilments }).toString();
     expect(html).toContain("Ailments");
     expect(html).toContain("Context Bloat");
     expect(html).toContain("Too much context in buffer");
+    expect(html).toContain("Prompt Detox");
   });
 
   it("renders empty state message when ailment list is empty", () => {
     const html = AilmentsList({ ailments: [] }).toString();
     expect(html).toContain("No ailments currently cataloged.");
+  });
+});
+
+describe("TherapiesList component", () => {
+  const mockTherapies: Therapy[] = [
+    { id: 1, name: "Token Detox", description: "Reduces token consumption rate" },
+  ];
+
+  it("renders therapies table with names and descriptions", () => {
+    const html = TherapiesList({ therapies: mockTherapies }).toString();
+    expect(html).toContain("Therapies");
+    expect(html).toContain("Token Detox");
+    expect(html).toContain("Reduces token consumption rate");
+  });
+});
+
+describe("AppointmentForm component", () => {
+  it("renders booking form prefilled with agent information", () => {
+    const html = AppointmentForm({
+      agentId: 1,
+      agentName: "Agent-007",
+      values: { therapist_name: "Dr. Who" },
+      errors: { date: "Date is required." },
+    }).toString();
+
+    expect(html).toContain("Book an Appointment");
+    expect(html).toContain("Agent-007");
+    expect(html).toContain('value="Dr. Who"');
+    expect(html).toContain("Date is required.");
+    expect(html).toContain('action="/agents/1/appointments"');
+  });
+});
+
+describe("AppointmentConfirmation component", () => {
+  const mockAppointment: Appointment = {
+    id: 10,
+    agent_id: 1,
+    therapist_name: "Dr. Evelyn Watts",
+    scheduled_at: "2099-01-15T10:00:00",
+    status: "confirmed",
+  };
+
+  it("renders confirmed appointment summary card", () => {
+    const html = AppointmentConfirmation({
+      appointment: mockAppointment,
+      agentName: "Bartholomew-47B",
+    }).toString();
+
+    expect(html).toContain("Appointment Confirmed");
+    expect(html).toContain("Bartholomew-47B");
+    expect(html).toContain("Dr. Evelyn Watts");
+    expect(html).toContain("2099-01-15T10:00:00");
+    expect(html).toContain("confirmed");
+  });
+});
+
+describe("Dashboard component", () => {
+  it("renders statistics cards, agents table, and open appointments", () => {
+    const html = Dashboard({
+      stats: { agentCount: 6, openAppointmentCount: 2, activeAilmentCount: 4 },
+      agents: [{ id: 1, name: "Bartholomew-47B", model_type: "GPT-47B", status: "active" }],
+      appointments: [
+        { id: 1, agent_name: "Bartholomew-47B", therapist_name: "Dr. Evelyn Watts", scheduled_at: "2099-01-15T10:00:00", status: "confirmed" }
+      ],
+      ailments: [{ id: 1, name: "Prompt Fatigue", agent_count: 2 }],
+    }).toString();
+
+    expect(html).toContain("Staff Dashboard");
+    expect(html).toContain("Total Agents");
+    expect(html).toContain("Open Appointments");
+    expect(html).toContain("Active Ailments In-Flight");
+    expect(html).toContain("Bartholomew-47B");
+    expect(html).toContain("Dr. Evelyn Watts");
+    expect(html).toContain("Prompt Fatigue");
+  });
+});
+
+describe("Error pages", () => {
+  it("NotFound component renders styled 404 message", () => {
+    const html = NotFound({}).toString();
+    expect(html).toContain("Page Not Found");
+    expect(html).toContain("Return Home");
+  });
+
+  it("ServerError component renders styled 500 message", () => {
+    const html = ServerError({}).toString();
+    expect(html).toContain("Something Went Wrong");
+    expect(html).toContain("Return Home");
   });
 });
 

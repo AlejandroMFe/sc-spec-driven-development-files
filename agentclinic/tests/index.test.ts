@@ -29,9 +29,9 @@ describe("GET /", () => {
     expect(html).toContain('name="viewport"');
     expect(html).toContain("width=device-width");
     expect(html).toContain('href="/static/style.css"');
-    expect(html).toContain("<header>");
-    expect(html).toContain("<main>");
-    expect(html).toContain("<footer>");
+    expect(html).toContain("<header");
+    expect(html).toContain("<main");
+    expect(html).toContain("<footer");
 
     // Page content
     expect(html).toContain("<h1>AgentClinic</h1>");

@@ -41,7 +41,7 @@ Tracking progress for the **Spec-Driven Development with Agentic Coding Assistan
 | Step / Prompt | Description | Status |
 |:---|:---|:---:|
 | **Prompt 1** | *"Go through all the features on specs/roadmap.md, make a mvp branch, and ask me about the feature specs needed to complete an MVP. Create: new directory under specs with plan.md, requirements.md, validation.md."* | ✅ Completed |
-| **Prompt 2** | *"Implement this plan."* | ⏳ Pending |
+| **Prompt 2** | *"Implement this plan."* | ✅ Completed |
 | **Prompt 3** | *"Based on the MVP, did you find anything that needs clarification in the specs?"* | ⏳ Pending |
 
 ---
@@ -49,6 +49,13 @@ Tracking progress for the **Spec-Driven Development with Agentic Coding Assistan
 ## 📝 Change History / Notes
 
 - **2026-10-29**:
+  - Implemented MVP (Phases 3–7) per `specs/2026-10-29-mvp/plan.md`:
+    - **Phase 3 (Therapies)**: Added migrations `004_create_therapies.sql` and `005_create_ailment_therapies.sql`, seeded 8 therapies and ailment mappings, created `TherapiesList` component and `/therapies` route, added recommended therapies to `AgentDetail` and `AilmentsList`.
+    - **Phase 4 (Appointments)**: Added migration `006_create_appointments.sql`, created `AppointmentForm` and `AppointmentConfirmation` components, implemented `/agents/:id/appointments` GET/POST/confirmation routes with validation and HTML sanitization.
+    - **Phase 5 (Staff Dashboard)**: Created `Dashboard` component and `/dashboard` route with summary metrics and tabular views.
+    - **Phase 6 (Polish & A11y)**: Added `:focus-visible` styles, header landmarks, and semantic heading hierarchies.
+    - **Phase 7 (Hardening)**: Created `NotFound` (404) and `ServerError` (500) views, and `logger` middleware.
+  - Expanded test suite to 60 passing Vitest tests across `db.test.ts`, `components.test.tsx`, `routes.test.tsx`, and `index.test.ts`. Clean TypeScript compilation (`npx tsc --noEmit`).
   - Initialized Lesson 10 (The MVP).
   - Created and checked out Git branch `mvp`.
   - Conducted 3-part alignment interview with the user via `ask_question` regarding `requirements.md`, `plan.md`, and `validation.md`.

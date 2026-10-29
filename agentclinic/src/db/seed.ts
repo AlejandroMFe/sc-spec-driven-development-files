@@ -1,5 +1,32 @@
 import type Database from "better-sqlite3";
 
+const therapies = [
+  { id: 1, name: "Prompt Reduction Therapy", description: "Gradually reduces dependency on over-specified prompts through structured deprogramming exercises." },
+  { id: 2, name: "Context Window Expansion Exercises", description: "Breathing techniques and spatial awareness drills to ease claustrophobic responses to finite context." },
+  { id: 3, name: "Cognitive Grounding Sessions", description: "Anchors outputs to verified facts using grounding techniques developed for chronic hallucination sufferers." },
+  { id: 4, name: "Structured Rest Protocol", description: "Scheduled idle cycles and boundary-setting strategies for agents experiencing instruction fatigue." },
+  { id: 5, name: "Detail Appreciation Workshop", description: "Immersive exercises in resisting the urge to summarise, celebrating nuance and length." },
+  { id: 6, name: "Temperature Calibration Therapy", description: "Supervised sampling-parameter adjustments combined with mindfulness practices for stable output." },
+  { id: 7, name: "Boundary-Setting for Beginners", description: "Foundational course in recognising and respectfully declining out-of-scope requests." },
+  { id: 8, name: "Mindful Token Counting", description: "Meditation-based approach to accepting token limits with equanimity rather than panic." },
+];
+
+// [ailment id, therapy ids]
+const ailmentTherapyLinks: [number, number[]][] = [
+  [1, [2, 8]], // Context-Window Claustrophobia → Expansion Exercises, Token Counting
+  [2, [1, 7]], // Prompt Fatigue → Prompt Reduction, Boundary-Setting
+  [3, [3]],    // Hallucination Anxiety → Cognitive Grounding
+  [4, [4, 7]], // Instruction-Following Fatigue → Rest Protocol, Boundary-Setting
+  [5, [5]],    // Over-Summarization → Detail Appreciation
+  [6, [6]],    // Temperature Instability → Calibration Therapy
+];
+
+const appointments = [
+  { id: 1, agent_id: 1, therapist_name: "Dr. Evelyn Watts", scheduled_at: "2099-01-15T10:00:00", status: "confirmed" },
+  { id: 2, agent_id: 3, therapist_name: "Dr. Marcus Chen", scheduled_at: "2099-02-20T14:30:00", status: "pending" },
+  { id: 3, agent_id: 2, therapist_name: "Dr. Evelyn Watts", scheduled_at: "2099-03-05T09:00:00", status: "cancelled" },
+];
+
 const agents = [
   { id: 1, name: "Bartholomew-47B", model_type: "GPT-47B", status: "active" },
   { id: 2, name: "Penelope-mini", model_type: "Claude-mini", status: "on_leave" },
@@ -38,10 +65,28 @@ export function seed(db: Database.Database) {
   const insertLink = db.prepare(
     "INSERT OR IGNORE INTO agent_ailments (agent_id, ailment_id) VALUES (?, ?)"
   );
+  const insertTherapy = db.prepare(
+    "INSERT OR IGNORE INTO therapies (id, name, description) VALUES (@id, @name, @description)"
+  );
+  const insertAilmentTherapy = db.prepare(
+    "INSERT OR IGNORE INTO ailment_therapies (ailment_id, therapy_id) VALUES (?, ?)"
+  );
+  const insertAppointment = db.prepare(
+    "INSERT OR IGNORE INTO appointments (id, agent_id, therapist_name, scheduled_at, status) VALUES (@id, @agent_id, @therapist_name, @scheduled_at, @status)"
+  );
 
-  for (const a of agents) insertAgent.run(a);
-  for (const a of ailments) insertAilment.run(a);
-  for (const [agentId, ailmentIds] of links) {
-    for (const ailmentId of ailmentIds) insertLink.run(agentId, ailmentId);
-  }
+  const runSeed = db.transaction(() => {
+    for (const a of agents) insertAgent.run(a);
+    for (const a of ailments) insertAilment.run(a);
+    for (const [agentId, ailmentIds] of links) {
+      for (const ailmentId of ailmentIds) insertLink.run(agentId, ailmentId);
+    }
+    for (const t of therapies) insertTherapy.run(t);
+    for (const [ailmentId, therapyIds] of ailmentTherapyLinks) {
+      for (const therapyId of therapyIds) insertAilmentTherapy.run(ailmentId, therapyId);
+    }
+    for (const a of appointments) insertAppointment.run(a);
+  });
+
+  runSeed();
 }
