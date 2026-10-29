@@ -1,7 +1,17 @@
 # Changelog
 
+## 2026-10-29
+
+- fix(review): implement deep review remediations across tooling, a11y, db, and types
+
 ## 2026-10-28
 
+- feat(branding): configure orange and black brand theme and update specs
+- chore: allow and track sqlite database files in repository
+- docs: update tutorial progress with Phase 2 implementation and extracted props
+- feat(ui): implement agents and ailments routes, server-rendered components, and route tests
+- feat(db): add SQLite setup, migrations, seeds, and unit tests
+- docs: update changelog with Phase 2 feature specification
 - feat: add Phase 2 feature specification for agents-ailments
 - docs: add tutorial progress tracker for spec-driven development course
 
