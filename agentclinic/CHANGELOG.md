@@ -2,6 +2,11 @@
 
 ## 2026-10-29
 
+- feat: add agentclinic database file
+- feat(mvp): implement Phases 3-7 therapies, appointments, dashboard, and hardening
+- docs(spec): add MVP feature specification for Phases 3-7
+- docs: add AGENTS.md with repository goals and pointers to TUTORIAL_PROGRESS.md
+- docs: update changelog and tutorial progress for Lesson 09
 - fix(review): implement deep review remediations across tooling, a11y, db, and types
 
 ## 2026-10-28

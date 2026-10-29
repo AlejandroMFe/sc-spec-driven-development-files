@@ -26,8 +26,8 @@ Tracking progress for the **Spec-Driven Development with Agentic Coding Assistan
 | **07** | Feature Validation (Video 08) | `Lesson_07_prompts.md` | ✅ Completed | Implemented layout & validated UI |
 | **08** | Project Replanning (Video 09) | `Lesson_08_prompts.md` | ✅ Completed | Vitest testing, responsive design, changelog skill, roadmap combined |
 | **09** | **The Second Feature Phase (Video 10)** | `Lesson_09_prompts.md` | ✅ Completed | Implemented brand colors, extracted props, deep review fixes, and changelog update |
-| **10** | **The MVP (Video 11)** | `Lesson_10_prompts.md` | 🟡 **In Progress** | Up next |
-| **11** | Legacy Support (Video 12) | `Lesson_11_prompts.md` | ⏳ Pending | |
+| **10** | **The MVP (Video 11)** | `Lesson_10_prompts.md` | ✅ Completed | Implemented Phases 3–7, 60 passing tests, changelog updated, merged to main |
+| **11** | Legacy Support (Video 12) | `Lesson_11_prompts.md` | 🟡 **In Progress** | Up next |
 | **12** | Build Your Own Workflow (Video 13) | `Lesson_12_prompts.md` | ⏳ Pending | |
 | **13** | Agent Replaceability (Video 14) | `Lesson_13_prompts.md` | ⏳ Pending | |
 
@@ -42,7 +42,7 @@ Tracking progress for the **Spec-Driven Development with Agentic Coding Assistan
 |:---|:---|:---:|
 | **Prompt 1** | *"Go through all the features on specs/roadmap.md, make a mvp branch, and ask me about the feature specs needed to complete an MVP. Create: new directory under specs with plan.md, requirements.md, validation.md."* | ✅ Completed |
 | **Prompt 2** | *"Implement this plan."* | ✅ Completed |
-| **Prompt 3** | *"Based on the MVP, did you find anything that needs clarification in the specs?"* | ⏳ Pending |
+| **Prompt 3** | *"Based on the MVP, did you find anything that needs clarification in the specs?"* | ✅ Completed |
 
 ---
 
