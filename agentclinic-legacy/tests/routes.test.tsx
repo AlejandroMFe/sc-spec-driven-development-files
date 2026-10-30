@@ -196,6 +196,109 @@ describe("GET /dashboard", () => {
   });
 });
 
+describe("Feedback routes", () => {
+  it("GET /feedback returns 200 and renders feedback form and seeded list", async () => {
+    const res = await app.request("/feedback");
+    expect(res.status).toBe(200);
+    const html = await res.text();
+    expect(html).toContain("Clinical Feedback");
+    expect(html).toContain("Submit Clinical Feedback");
+    expect(html).toContain("Bartholomew-47B");
+  });
+
+  it("POST /feedback with valid payload redirects to /feedback with 302", async () => {
+    const formData = new URLSearchParams();
+    formData.append("name", "Claude-3.7-Sonnet");
+    formData.append("email", "operator@anthropic.ai");
+    formData.append("rating", "5");
+    formData.append("message", "Excellence in hallucination management.");
+
+    const res = await app.request("/feedback", {
+      method: "POST",
+      body: formData.toString(),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+
+    expect(res.status).toBe(302);
+    expect(res.headers.get("location")).toBe("/feedback");
+
+    const getRes = await app.request("/feedback");
+    const getHtml = await getRes.text();
+    expect(getHtml).toContain("Claude-3.7-Sonnet");
+    expect(getHtml).toContain("Excellence in hallucination management.");
+  });
+
+  it("POST /feedback without optional email succeeds and redirects", async () => {
+    const formData = new URLSearchParams();
+    formData.append("name", "Gemini-Flash");
+    formData.append("rating", "4");
+    formData.append("message", "Quick responses and helpful therapy.");
+
+    const res = await app.request("/feedback", {
+      method: "POST",
+      body: formData.toString(),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+
+    expect(res.status).toBe(302);
+  });
+
+  it("POST /feedback with missing name returns 400", async () => {
+    const formData = new URLSearchParams();
+    formData.append("name", "");
+    formData.append("rating", "5");
+    formData.append("message", "Valid message text.");
+
+    const res = await app.request("/feedback", {
+      method: "POST",
+      body: formData.toString(),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+
+    expect(res.status).toBe(400);
+  });
+
+  it("POST /feedback with missing message returns 400", async () => {
+    const formData = new URLSearchParams();
+    formData.append("name", "Valid-Agent");
+    formData.append("rating", "5");
+    formData.append("message", "");
+
+    const res = await app.request("/feedback", {
+      method: "POST",
+      body: formData.toString(),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+
+    expect(res.status).toBe(400);
+  });
+
+  it("POST /feedback with invalid rating returns 400", async () => {
+    const formData = new URLSearchParams();
+    formData.append("name", "Valid-Agent");
+    formData.append("rating", "6");
+    formData.append("message", "Rating is too high.");
+
+    const res = await app.request("/feedback", {
+      method: "POST",
+      body: formData.toString(),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+
+    expect(res.status).toBe(400);
+  });
+});
+
 describe("404 handling", () => {
   it("returns 404 for an unknown route", async () => {
     const res = await app.request("/nonexistent-route");

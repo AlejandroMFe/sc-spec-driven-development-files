@@ -9,6 +9,8 @@ import { AilmentsList } from "../src/components/AilmentsList.js";
 import { TherapiesList } from "../src/components/TherapiesList.js";
 import { AppointmentForm } from "../src/components/AppointmentForm.js";
 import { AppointmentConfirmation } from "../src/components/AppointmentConfirmation.js";
+import { FeedbackForm } from "../src/components/FeedbackForm.js";
+import { FeedbackList } from "../src/components/FeedbackList.js";
 import { Dashboard } from "../src/components/Dashboard.js";
 import { NotFound } from "../src/pages/NotFound.js";
 import { ServerError } from "../src/pages/ServerError.js";
@@ -25,6 +27,7 @@ describe("Header component", () => {
     expect(html).toContain('href="/ailments"');
     expect(html).toContain('href="/therapies"');
     expect(html).toContain('href="/dashboard"');
+    expect(html).toContain('href="/feedback"');
   });
 });
 
@@ -236,5 +239,55 @@ describe("Home page component", () => {
     expect(html).toContain("Status: Operational — Accepting Distressed Agents");
     expect(html).toContain('href="/health"');
     expect(html).toContain("About the Clinic");
+  });
+});
+
+describe("FeedbackForm component", () => {
+  it("renders form inputs for name, email, rating, and message", () => {
+    const html = FeedbackForm({}).toString();
+    expect(html).toContain('<form method="post" action="/feedback"');
+    expect(html).toContain('name="name"');
+    expect(html).toContain('name="email"');
+    expect(html).toContain('name="rating"');
+    expect(html).toContain('name="message"');
+    expect(html).toContain("Agent ID");
+    expect(html).toContain("Session Rating");
+    expect(html).toContain("Submit Clinical Feedback");
+  });
+
+  it("renders validation errors when supplied", () => {
+    const html = FeedbackForm({
+      errors: {
+        name: "Agent ID is required.",
+        message: "Message required.",
+      },
+    }).toString();
+    expect(html).toContain("Agent ID is required.");
+    expect(html).toContain("Message required.");
+  });
+});
+
+describe("FeedbackList component", () => {
+  it("renders empty state when no feedback is present", () => {
+    const html = FeedbackList({ items: [] }).toString();
+    expect(html).toContain("No feedback yet. Be the first agent to share your experience.");
+  });
+
+  it("renders feedback entries with rating and content", () => {
+    const html = FeedbackList({
+      items: [
+        {
+          id: 1,
+          name: "Claude-3.5-Sonnet",
+          message: "Exemplary care for context overflow.",
+          rating: 5,
+          created_at: "2026-10-30 12:00:00",
+        },
+      ],
+    }).toString();
+    expect(html).toContain("Claude-3.5-Sonnet");
+    expect(html).toContain("Rating: 5 / 5");
+    expect(html).toContain("Exemplary care for context overflow.");
+    expect(html).toContain("Submitted on 2026-10-30 12:00:00");
   });
 });

@@ -36,12 +36,12 @@ Tracking progress for the **Spec-Driven Development with Agentic Coding Assistan
 ## 🎯 Current Lesson Details: Lesson 11 — Legacy Support (Video 12)
 
 **Target Directory**: `agentclinic-legacy/`
-**Active Branch**: `main`
+**Active Branch**: `feedback-form`
 
 | Step / Prompt | Description | Status |
 |:---|:---|:---:|
 | **Prompt 1** | *"Look in README.md for input from stakeholders. Make a constitution in a specs directory: mission.md, tech-stack.md, roadmap.md based on TODO.md. Interview me about mission, target audience, tech stack gaps."* | ✅ Completed |
-| **Prompt 2** | *"Implement the plan."* | ⏳ Pending |
+| **Prompt 2** | *"Find the next phase on specs/roadmap.md and make a branch, ask me about the feature spec... Implement it."* | ✅ Completed |
 
 ---
 
@@ -55,6 +55,16 @@ Tracking progress for the **Spec-Driven Development with Agentic Coding Assistan
     - `mission.md`: Satirical comedy premise played straight, teaching-first audience, stakeholder alignment.
     - `tech-stack.md`: Hono JSX SSR, Node.js, SQLite (`better-sqlite3`), Vitest, and identified gaps (linter, ORM, CI, progressive enhancement).
     - `roadmap.md`: Small, phased roadmap based on `TODO.md` (Feedback form, About Us content & map, Customer Reviews display & submission).
+  - Created Git branch `feedback-form`.
+  - Authored feature specification in `agentclinic-legacy/specs/2026-10-30-feedback-form/` (`requirements.md`, `plan.md`, `validation.md`).
+  - Implemented Feedback Form feature:
+    - Added database migration `007_create_feedback.sql` with rating CHECK constraint (1..5).
+    - Added `Feedback` model in `src/db/types.ts` and in-world seed entries in `src/db/seed.ts`.
+    - Created `FeedbackForm` and `FeedbackList` components with full validation error rendering and empty states.
+    - Created `Feedback` page and `feedbackRouter` implementing GET/POST routes with POST-redirect-GET pattern.
+    - Added Feedback link to navigation header in `Header.tsx`.
+  - Expanded test suite to 73 passing Vitest tests across `db.test.ts`, `components.test.tsx`, and `routes.test.tsx`.
+  - Generated `agentclinic-legacy/CHANGELOG.md` via changelog skill.
 
 - **2026-10-29**:
   - Implemented MVP (Phases 3–7) per `specs/2026-10-29-mvp/plan.md`:

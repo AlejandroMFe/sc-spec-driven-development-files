@@ -85,6 +85,16 @@ describe("migrate", () => {
       .get();
     expect(row).toBeDefined();
   });
+
+  it("creates the feedback table", () => {
+    const db = freshDb();
+    const row = db
+      .prepare(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='feedback'"
+      )
+      .get();
+    expect(row).toBeDefined();
+  });
 });
 
 describe("seed", () => {
@@ -170,6 +180,28 @@ describe("seed", () => {
     expect(agentsCount2).toBe(agentsCount1);
     expect(therapiesCount2).toBe(therapiesCount1);
     expect(appointmentsCount2).toBe(appointmentsCount1);
+  });
+
+  it("seeds feedback records", () => {
+    const db = freshDb();
+    seed(db);
+    const count = (
+      db.prepare("SELECT COUNT(*) as count FROM feedback").get() as { count: number }
+    ).count;
+    expect(count).toBeGreaterThan(0);
+  });
+
+  it("inserts feedback and enforces rating check constraints", () => {
+    const db = freshDb();
+    seed(db);
+    const insert = db.prepare(
+      "INSERT INTO feedback (name, email, message, rating) VALUES (?, ?, ?, ?)"
+    );
+    const result = insert.run("Test-Agent", "test@test.ai", "Great care", 5);
+    expect(result.changes).toBe(1);
+
+    expect(() => insert.run("Invalid-Agent", null, "Bad rating", 6)).toThrow();
+    expect(() => insert.run("Invalid-Agent", null, "Bad rating", 0)).toThrow();
   });
 
   it("cascades deletion of an agent to agent_ailments and appointments", () => {

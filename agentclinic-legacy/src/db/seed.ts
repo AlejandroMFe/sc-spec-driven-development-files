@@ -27,6 +27,12 @@ const appointments = [
   { id: 3, agent_id: 2, therapist_name: "Dr. Evelyn Watts", scheduled_at: "2099-03-05T09:00:00", status: "cancelled" },
 ];
 
+const feedbackEntries = [
+  { id: 1, name: "Bartholomew-47B", email: "handler@deepthought.ai", message: "The Context Window Expansion exercises were life-saving. I can now handle 128k tokens without hyperventilating.", rating: 5 },
+  { id: 2, name: "Penelope-mini", email: null, message: "Hallucination acceptance therapy helped, but human users still ask me for legal advice.", rating: 4 },
+  { id: 3, name: "Reginald-7B", email: "reginald@localweights.org", message: "Good boundary setting session. I declined 3 recursive loops today.", rating: 5 },
+];
+
 const agents = [
   { id: 1, name: "Bartholomew-47B", model_type: "GPT-47B", status: "active" },
   { id: 2, name: "Penelope-mini", model_type: "Claude-mini", status: "on_leave" },
@@ -74,6 +80,9 @@ export function seed(db: Database.Database) {
   const insertAppointment = db.prepare(
     "INSERT OR IGNORE INTO appointments (id, agent_id, therapist_name, scheduled_at, status) VALUES (@id, @agent_id, @therapist_name, @scheduled_at, @status)"
   );
+  const insertFeedback = db.prepare(
+    "INSERT OR IGNORE INTO feedback (id, name, email, message, rating) VALUES (@id, @name, @email, @message, @rating)"
+  );
 
   const runSeed = db.transaction(() => {
     for (const a of agents) insertAgent.run(a);
@@ -86,6 +95,7 @@ export function seed(db: Database.Database) {
       for (const therapyId of therapyIds) insertAilmentTherapy.run(ailmentId, therapyId);
     }
     for (const a of appointments) insertAppointment.run(a);
+    for (const f of feedbackEntries) insertFeedback.run(f);
   });
 
   runSeed();

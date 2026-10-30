@@ -9,6 +9,7 @@ import { ailmentsRouter } from "./routes/ailments.js";
 import { therapiesRouter } from "./routes/therapies.js";
 import { appointmentsRouter } from "./routes/appointments.js";
 import { dashboardRouter } from "./routes/dashboard.js";
+import { feedbackRouter } from "./routes/feedback.js";
 import { logger } from "./middleware/logger.js";
 
 export function createApp(db: Database.Database) {
@@ -32,6 +33,7 @@ export function createApp(db: Database.Database) {
   app.route("/ailments", ailmentsRouter(db));
   app.route("/therapies", therapiesRouter(db));
   app.route("/dashboard", dashboardRouter(db));
+  app.route("/feedback", feedbackRouter(db));
 
   app.notFound((c) => c.html(<NotFound />, 404));
   app.onError((_err, c) => c.html(<ServerError />, 500));
