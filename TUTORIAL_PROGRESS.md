@@ -33,20 +33,28 @@ Tracking progress for the **Spec-Driven Development with Agentic Coding Assistan
 
 ---
 
-## 🎯 Current Lesson Details: Lesson 10 — The MVP (Video 11)
+## 🎯 Current Lesson Details: Lesson 11 — Legacy Support (Video 12)
 
-**Target Directory**: `agentclinic/`
-**Active Branch**: `mvp`
+**Target Directory**: `agentclinic-legacy/`
+**Active Branch**: `main`
 
 | Step / Prompt | Description | Status |
 |:---|:---|:---:|
-| **Prompt 1** | *"Go through all the features on specs/roadmap.md, make a mvp branch, and ask me about the feature specs needed to complete an MVP. Create: new directory under specs with plan.md, requirements.md, validation.md."* | ✅ Completed |
-| **Prompt 2** | *"Implement this plan."* | ✅ Completed |
-| **Prompt 3** | *"Based on the MVP, did you find anything that needs clarification in the specs?"* | ✅ Completed |
+| **Prompt 1** | *"Look in README.md for input from stakeholders. Make a constitution in a specs directory: mission.md, tech-stack.md, roadmap.md based on TODO.md. Interview me about mission, target audience, tech stack gaps."* | ✅ Completed |
+| **Prompt 2** | *"Implement the plan."* | ⏳ Pending |
 
 ---
 
 ## 📝 Change History / Notes
+
+- **2026-10-30**:
+  - Initialized Lesson 11 (Legacy Support) using workspace `agentclinic-legacy/`.
+  - Added `agentclinic-legacy/README.md` and `agentclinic-legacy/TODO.md`.
+  - Conducted 3-part interactive interview via `ask_question` covering Mission & Satirical Tone, Target Audience, and Tech Stack Gaps.
+  - Authored legacy constitution files in `agentclinic-legacy/specs/`:
+    - `mission.md`: Satirical comedy premise played straight, teaching-first audience, stakeholder alignment.
+    - `tech-stack.md`: Hono JSX SSR, Node.js, SQLite (`better-sqlite3`), Vitest, and identified gaps (linter, ORM, CI, progressive enhancement).
+    - `roadmap.md`: Small, phased roadmap based on `TODO.md` (Feedback form, About Us content & map, Customer Reviews display & submission).
 
 - **2026-10-29**:
   - Implemented MVP (Phases 3–7) per `specs/2026-10-29-mvp/plan.md`:
