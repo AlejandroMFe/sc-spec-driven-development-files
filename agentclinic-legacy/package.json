@@ -1,0 +1,28 @@
+{
+  "name": "agentclinic",
+  "version": "1.0.0",
+  "description": "AgentClinic - Specialized relief, cooldowns, and triage for exhausted AI agents",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.tsx",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "seed": "tsx src/db/run-seed.ts",
+    "build": "tsc && node scripts/copy-migrations.js",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.12",
+    "better-sqlite3": "^13.0.3",
+    "hono": "^4.12.9"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.5.3",
+    "vitest": "^2.1.8"
+  },
+  "private": true
+}
